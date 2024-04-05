@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 class Solution {
@@ -7,17 +8,13 @@ class Solution {
             return 0;
         }
 
-        PriorityQueue<Integer> allocator = new PriorityQueue<Integer>(
+        PriorityQueue<Integer> allocator = new PriorityQueue<>(
                 intervals.length,
-                (a, b) -> a - b);
+                Comparator.comparingInt(a -> a));
 
         Arrays.sort(
                 intervals,
-                (a, b) -> a[0] - b[0]);
-
-        for (int[] i : intervals) {
-            System.out.println("Want to see i: " + Arrays.toString(i));
-        }
+                Comparator.comparingInt(a -> a[0]));
 
         allocator.add(intervals[0][1]);
 
